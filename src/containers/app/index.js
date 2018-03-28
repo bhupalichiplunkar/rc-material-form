@@ -4,8 +4,43 @@ import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Switch } from 'react-router';
 import { push } from 'react-router-redux';
-import { DatePicker } from 'antd';
+import  Form  from '../form';
 import 'antd/dist/antd.css';
+
+const fields = [
+  {
+      name: "firstName",
+      label: "First Name",
+      type: "text",
+      options:{
+          rules:{
+            presence : true,
+            length: {
+              minimum: 3,
+              message: "can't be empty"
+            }
+          },
+          initialValue: "Bhupali",
+          placeholder: "Enter Your First Name"
+      },
+  },
+  {
+      name: "lastName",
+      label: "Last Name",
+      type: "text",
+      options:{
+          rules:{
+            presence : true,
+            length: {
+              minimum: 3,
+              message: "can't be empty"
+            }
+          },
+          initialValue: "Chiplunkar",
+          placeholder: "Enter Your Last Name"
+      }
+  }
+];
 
 class App extends Component{
   render(){
@@ -15,7 +50,7 @@ class App extends Component{
           <Route
             path="/"
             component={({ match }) => (
-              <DatePicker />
+              <Form fields = {fields} onSubmit={(formData) => console.log(formData)}/>
             )}
           />
         </Switch>
